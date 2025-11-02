@@ -1,0 +1,68 @@
+h1 {
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: bold;
+}
+
+.navbar ul{
+    list-style-type:none;
+    margin: 10px;
+    background-color: rgb(42, 42, 56);
+    padding: 0px;
+    margin:  0px;
+    overflow: hidden;
+}
+
+.navbar a{
+    font-family: "Source Sans Pro", sans-serif;
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+
+.navbar a:hover{
+    background-color: rgba(99, 99, 116, 0.65);
+}
+
+.navbar li{
+    float: left;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.TaxCalulatorStuff{
+    font-family: "Source Sans Pro", sans-serif;
+    text-align: center;
+}
+
+.conversionStyle{
+    font-family: "Source Sans Pro", sans-serif;
+    text-align: center;
+}
+
+.homepagetextStyle{
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.simplePayrollButtons{
+    text-align: center;
+}
+
+.factorialWordStyle{
+    text-align: center;
+}
+
+.factorialWordStyle .nishki{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    height: 25%;
+    width: 25%;
+}

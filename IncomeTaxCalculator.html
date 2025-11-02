@@ -1,0 +1,139 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Blank template</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+
+        <nav class = "navbar">
+            <ul>
+                <li><a href ="Conversion.html">Conversion</a></li>
+                <li><a href ="index.html">Home Page</a></li>
+                <li><a href ="Factorial.html">Factorial</a></li>
+                <li><a href ="SimplePayroll.html">Simple Payroll</a></li>
+            </ul>
+        </nav>
+
+
+        <h1>Income Tax Calculator</h1>
+        <br><br><br>
+
+        <table border = 2>
+            
+            <thead>
+                <tr>
+                    <td>Over</td>
+                    <td>But Not Over</td>
+                    <td></td>
+                    <td>Taxable Income</td>
+                    <td>Income Tax</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>₱ 250,000</td>
+                    <td>0%</td>
+                    <td>₱ 180,000.00</td>
+                    <td>₱ 0.00</td>
+                </tr>
+                <tr>
+                    <td>₱ 250,000</td>
+                    <td>₱ 400,000</td>
+                    <td>20% of the excess over ₱ 250,000</td>
+                    <td>₱ 320,000.00</td>
+                    <td>₱ 14,000.00</td>
+                </tr>
+                <tr>
+                    <td>₱ 400,000</td>
+                    <td>₱ 800,000</td>
+                    <td>₱ 30,000 + 25% of the excess over ₱ 400,000</td>
+                    <td>₱ 520,000.00</td>
+                    <td>₱ 60,000.00</td>
+                </tr>
+                <tr>
+                    <td>₱ 800,000</td>
+                    <td>₱ 2,000,000</td>
+                    <td>₱ 130,000 + 30% of the excess over ₱ 800,000</td>
+                    <td>₱ 930,000.00</td>
+                    <td>₱ 169,000.00</td>
+                </tr>
+                <tr>
+                    <td>₱ 2,000,000</td>
+                    <td>₱ 8,000,000</td>
+                    <td>₱ 490,000 + 32% of the excess over ₱ 2,000,000</td>
+                    <td>₱ 2,400,000.00</td>
+                    <td>₱ 618,000.00</td>
+                </tr>
+                <tr>
+                    <td>₱ 8,000,000</td>
+                    <td></td>
+                    <td>₱ 2,410,000 + 35% of the excess over ₱ 8,000,000</td>
+                    <td>₱ 10,000,000.00</td>
+                    <td>₱ 3,110,000.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <div class="TaxCalulatorStuff">
+            <label for="incomeLabel">Input the income you want to tax here:</label>
+            <input id="uIncome" type="number">
+            <button onclick="computeIncomeTax()">Compute</button>
+
+            <br><br><br>
+            <label for="result">Computed Income Tax:</label>
+            <input id="computedTax" type="text" readonly>
+        </div>
+
+        
+
+        <script>
+
+            function computeIncomeTax(){
+                var income,computedTax,excess;
+
+        
+                income = document.getElementById("uIncome").value*1;
+                computedTax = document.getElementById("computedTax").value*1;
+
+                if (income <= 250000){
+                    computedTax=0.00;
+                }else if (income > 250000 && income <= 400000){
+                    excess = income - 250000;
+                    computedTax = excess * 0.2;
+                }else if (income > 400000 && income <= 800000){
+                    excess = income - 400000;
+                    computedTax = 30000 + (excess * 0.25);
+                }else if (income > 800000 && income <= 2000000){
+                    excess = income - 800000;
+                    computedTax = 130000 + (excess * 0.3);
+                }else if (income > 2000000 && income <= 8000000){
+                    excess = income - 2000000;
+                    computedTax = 490000 + (excess * 0.32);
+                }else{
+                    excess = income - 8000000;
+                    computedTax = 2410000 + (excess * 0.35);
+                }
+
+                document.getElementById("computedTax").value = `₱${computedTax.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
+            
+        </script>
+        
+        
+        
+        
+    </body>
+
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Blank template</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+
+        <nav class = "navbar">
+            <ul>
+                <li><a href ="Conversion.html">Conversion</a></li>
+                <li><a href ="IncomeTaxCalculator.html">Income Tax Calculator</a></li>
+                <li><a href ="index.html">Home Page</a></li>
+                <li><a href ="SimplePayroll.html">Simple Payroll</a></li>
+            </ul>
+        </nav>
+
+        <h1>Factorial</h1>
+        <br><br><br>
+
+        <div class ="factorialWordStyle">
+            <img class= "nishki" src ="image/10yearsinthejoint.png">
+            <br>
+            <label for="uInput">Input the number you want to use here:</label>
+            <input id="uInput" type="number">
+            <br><br>
+            <button onclick="factorial()">Nth Factorial</button>
+            <button onclick="sumNumbers()">Sum of the First N Numbers</button>
+            <button onclick="averageNumbers()">Average of the First N Numbers</button>
+            <br><br><br>
+            <label for="output">Result:</label>
+            <input id="output" type="number" readonly>
+        </div>
+
+        <script>
+            
+            function factorial(){
+                var num;      
+                num = document.getElementById("uInput").value*1;
+
+                let factorial = 1;
+                let i = 1;
+
+                while (i <= num){
+                    factorial *= i;
+                    i++;
+                }
+                document.getElementById("output").value = factorial;
+            }
+
+            function sumNumbers(){
+                var num;      
+                num = document.getElementById("uInput").value*1;
+
+                let sum = 0;
+                let i = 1;
+
+                do{
+                    sum += i;
+                    i++;
+                }while(i <= num);
+
+                document.getElementById("output").value = sum;
+
+            }
+
+            function averageNumbers(){
+                var num;      
+                num = document.getElementById("uInput").value*1;
+
+                let sum = 0;
+
+                for (let i = 1; i <= num; i++){
+                    sum += i;
+                }
+
+                let avg = sum / num;
+
+                document.getElementById("output").value = avg;
+            }
+        </script>
+        
+        
+    </body>
+
+</html>

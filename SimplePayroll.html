@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Blank template</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+
+        <nav class = "navbar">
+            <ul>
+                <li><a href ="Conversion.html">Conversion</a></li>
+                <li><a href ="IncomeTaxCalculator.html">Income Tax Calculator</a></li>
+                <li><a href ="Factorial.html">Factorial</a></li>
+                <li><a href ="index.html">Home Page</a></li>
+            </ul>
+        </nav>
+
+        <h1>Simple Payroll</h1>
+        <br><br><br>
+
+        <table border = 2>
+            
+            <thead>
+                <tr>
+                    <td>Employee Name</td>
+                    <td>Days Worked</td>
+                    <td>Daily Rate</td>
+                    <td>Deduction</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><input id="eName" type="text"></td>
+                    <td><input id="daysWorked" type="number"></td>
+                    <td><input id="dailyRate" type="number"></td>
+                    <td><input id="deduction" type="number"></td>
+                </tr>
+                              
+            </tbody>
+
+        </table>
+        <br><br>
+
+        <div class = simplePayrollButtons>
+        <button onclick = "addEmployee()">Add Employee</button>
+        <button onclick = "delEmployee()">Delete Employee</button>
+        </div>
+
+        <br><br><br>
+
+        <table id = "Payroll" border = 2>
+            
+            <thead>
+                <tr>
+                    <td>No.</td>
+                    <td>Employee Name</td>
+                    <td>Days Worked</td>
+                    <td>Daily Rate</td>
+                    <td>Gross</td>
+                    <td>Deduction Amount</td>
+                    <td>Net Pay</td>
+                </tr>
+            </thead>
+
+            <tbody>                              
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td>Total:</td>
+                    <td id ="totalDays">0</td>
+                    <td id ="totalDailyRate">0</td>
+                    <td id ="totalGross">0</td>
+                    <td id ="totalDeduction">0</td>
+                    <td id ="totalPay">0</td>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <script>
+            let employees = [];
+
+            function addEmployee() {
+                const eName = document.getElementById("eName").value.trim();
+                const daysWorked = Number(document.getElementById("daysWorked").value);
+                const dailyRate = Number(document.getElementById("dailyRate").value);
+                const deduction = Number(document.getElementById("deduction").value);
+
+      
+                    if (!eName || daysWorked <= 0 || dailyRate <= 0) {
+                        alert("Please enter valid employee details!");
+                        return;
+                    }
+
+                const gross = daysWorked * dailyRate;
+                const netPay = gross - deduction;
+
+                employees.push({ eName, daysWorked, dailyRate, gross, deduction, netPay });
+
+                displayPayrollTable();
+
+                document.getElementById("eName").value = "";
+                document.getElementById("daysWorked").value = "";
+                document.getElementById("dailyRate").value = "";
+                document.getElementById("deduction").value = "";
+            }
+
+            function delEmployee() {
+                const lineNum = parseInt(prompt("Enter the employee number you want to delete:"));
+
+                    if (isNaN(lineNum) || lineNum > employees.length || lineNum < 1) {
+                    alert("Invalid line number");
+                    return;
+                    }
+
+                employees.splice(lineNum - 1, 1);
+                displayPayrollTable();
+            }
+
+            function displayPayrollTable() {
+                const tbody = document.querySelector("#Payroll tbody");
+                tbody.innerHTML = "";
+
+                let totalDays = 0, totalGross = 0, totalDeduction = 0, totalNet = 0;
+
+                employees.forEach((emp, index) => {
+                    const row = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${emp.eName}</td>
+                            <td>${emp.daysWorked}</td>
+                            <td>₱${emp.dailyRate.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                            <td>₱${emp.gross.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                            <td>₱${emp.deduction.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                            <td>₱${emp.netPay.toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                        </tr>
+                    `;
+
+                tbody.innerHTML += row;
+
+                totalDays += emp.daysWorked;
+                totalGross += emp.gross;
+                totalDeduction += emp.deduction;
+                totalNet += emp.netPay;
+
+                });
+
+                document.getElementById("totalDays").textContent = totalDays;
+                document.getElementById("totalGross").textContent = `₱${totalGross.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+                document.getElementById("totalDeduction").textContent = `₱${totalDeduction.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+                document.getElementById("totalPay").textContent = `₱${totalNet.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+            }
+
+         </script>         
+    </body>
+</html>

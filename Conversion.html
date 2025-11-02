@@ -1,0 +1,96 @@
+ <!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Blank template</title>
+
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+        <nav class = "navbar">
+            <ul>
+                <li><a href ="index.html">Home Page</a></li>
+                <li><a href ="IncomeTaxCalculator.html">Income Tax Calculator</a></li>
+                <li><a href ="Factorial.html">Factorial</a></li>
+                <li><a href ="SimplePayroll.html">Simple Payroll</a></li>
+            </ul>
+        </nav>
+
+        <h1>Conversion</h1>
+        <br><br><br>
+
+        <div class = "conversionStyle">
+            <img class= "img-For_Peak" src ="image/FOR_PEAK.png">
+            <br>
+            <label for="uInput">Input the number you want to convert here:</label>
+            <br><br>
+            <input id="uInput" type="number">
+            <br><br><br>
+        
+            <div class="select">
+                <select name="Converter" id="Converter">
+                    <option selected disabled>Choose a convertion option</option>
+                    <option value="celTofah">Celcius to Farenheit</option>
+                    <option value="fahTocel">Farenheit to Celcius</option>
+                    <option value="metTofeet">Meter to Feet</option>
+                    <option value="feetTomet">Feet to Meter</option>
+                </select>
+            </div>
+
+            <br><br>
+            <p>Converted Amount:</p>
+            <input id="convertAmount" type="text" readonly>
+        </div>
+
+
+        <script>
+        function celTofah(value) {
+            return (value * 9 / 5) + 32;
+        }
+
+        function fahTocel(value) {
+            return (value - 32) * 5 / 9;
+        }
+
+        function metTofeet(value) {
+            return value * 3.28084;
+        }
+
+        function feetTomet(value) {
+            return value / 3.28084;
+        }
+
+        document.getElementById("Converter").addEventListener("change", function() {
+            const inputValue = parseFloat(document.getElementById("uInput").value);
+            const option = this.value;
+            let result;
+
+            switch (option) {
+                case "celTofah":
+                    result = celTofah(inputValue).toFixed(2) + " °F";
+                    break;
+                case "fahTocel":
+                    result = fahTocel(inputValue).toFixed(2) + " °C";
+                    break;
+                case "metTofeet":
+                    result = metTofeet(inputValue).toFixed(2) + " ft";
+                    break;
+                case "feetTomet":
+                    result = feetTomet(inputValue).toFixed(2) + " m";
+                    break;
+            }
+
+           
+            document.getElementById("convertAmount").value = result;
+        });
+        </script>
+    
+        
+    </body>
+
+</html>

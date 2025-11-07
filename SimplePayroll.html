@@ -102,7 +102,7 @@
                     }
 
                 const gross = daysWorked * dailyRate;
-                const netPay = gross - deduction;
+                const netPay = Math.max(gross - deduction, 0);
 
                 employees.push({ eName, daysWorked, dailyRate, gross, deduction, netPay });
 
